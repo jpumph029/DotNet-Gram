@@ -1,0 +1,15 @@
+﻿@page
+@using NetGram.Models.Interfaces
+
+@inject IGram GramService
+This is our page dir
+@{
+    var grams = await GramService.GetGram();
+}
+
+@foreach (var item in grams)
+{
+    <h3>@item.Name</h3>
+    <p>@item.URL</p>
+    <p>@item.Description</p>
+}
