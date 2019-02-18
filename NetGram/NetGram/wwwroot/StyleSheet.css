@@ -1,0 +1,28 @@
+﻿html{
+    background-color: aliceblue;
+}
+div {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    align-content: center;
+    margin-bottom: 20px;
+}
+img {
+    display: block;
+    max-width: 600px;
+    width: auto;
+    height: auto;
+}
+p{
+    font-size: larger;
+}
+a{
+    font-size: x-large;
+}
+span {
+    position: fixed;
+}
+
+
+

@@ -1,23 +1,21 @@
-﻿@page
-@using NetGram.Models.Interfaces
-
-@inject IGram GramService
+﻿@page "{id?}"
+@model NetGram.Pages.Grams.ManageModel
 @{
-    var grams = await GramService.GetGram();
+    ViewData["Title"] = "Manage";
 }
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <link rel="stylesheet" type="text/css" href="~/StyleSheet.css">
-<span>
-    <h2>NetGram</h2>
-    <h3><a asp-page="/Grams/Manage">New Post</a></h3>    
-</span>>
 
-    @foreach (var item in grams)
-    {
-        <div>
-        <img src="@item.URL" />
-        <a asp-page="/Grams/Index" asp-route-id="@item.ID">@item.Title</a>
-        <p>@item.Name</p>
-        </div>
-    }
+<h1>New Post</h1>
+
+<form method="post" enctype="multipart/form-data">
+    <label asp-for="Image"></label>
+    <input asp-for="Image" type="file" /></br>
+    Post Name
+    <input asp-for="Gram.Title" /></br>
+    Author
+    <input asp-for="Gram.Name" /></br>
+    <button type="submit">SAVE</button>
+    <button type="submit" asp-page-handler="Delete">DELETE</button>
+</form>

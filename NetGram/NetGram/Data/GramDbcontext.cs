@@ -22,30 +22,35 @@ namespace NetGram.Data
                 new Gram
                 {
                     ID = 1,
+                    Title = "LOLOLOL",
                     Name = "Bill",
                     URL = ".png"
                 },
                 new Gram
                 {
                     ID = 2,
+                    Title = "This dog!",
                     Name = "Sam",
                     URL = ".png"
                 },
                 new Gram
                 {
                     ID = 3,
+                    Title = "This is Seattle",
                     Name = "Joe",
                     URL = ".png"
                 },
                  new Gram
                 {
                     ID = 4,
+                    Title = ":)",
                     Name = "Kat",
                     URL = ".png"
                 },
                 new Gram
                 {
                     ID = 5,
+                    Title = "I love this pizza",
                     Name = "Mat",
                     URL = ".png"
                 }
