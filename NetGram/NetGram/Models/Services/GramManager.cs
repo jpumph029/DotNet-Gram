@@ -26,7 +26,7 @@ namespace NetGram.Services
         public async Task DeleteAsync(int id)
         {
             Gram gram = await _context.Gram.FindAsync(id);
-            if (gram != null)
+            if (gram != null && gram.ID == id)
             {
                 _context.Remove(gram);
                 await _context.SaveChangesAsync();

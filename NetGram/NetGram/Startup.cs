@@ -20,7 +20,10 @@ namespace NetGram
 
         public Startup(IConfiguration configuration)
         {
+            var builder = new ConfigurationBuilder().AddEnvironmentVariables();
+            builder.AddUserSecrets<Startup>();
             Configuration = configuration;
+        
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -29,7 +32,7 @@ namespace NetGram
             services.AddMvc();
 
             services.AddDbContext<GramDbcontext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             services.AddScoped<IGram, GramManager>();
         }
@@ -42,13 +45,14 @@ namespace NetGram
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
             app.UseStaticFiles();
-
-            app.Run(async (context) =>
+            app.UseMvc(routes =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute(
+                name: "default",
+                template: "/{action=Manage}/{id?}");
             });
+
         }
     }
 }
