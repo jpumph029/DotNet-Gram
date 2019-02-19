@@ -32,7 +32,7 @@ namespace NetGram
             services.AddMvc();
 
             services.AddDbContext<GramDbcontext>(options =>
-            options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            options.UseSqlServer(Configuration["ConnectionStrings:ProductionConnection"]));
 
             services.AddScoped<IGram, GramManager>();
         }
@@ -45,13 +45,14 @@ namespace NetGram
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvc();
             app.UseStaticFiles();
-
-            app.Run(async (context) =>
+            app.UseMvc(routes =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                routes.MapRoute(
+                name: "default",
+                template: "/{action=Manage}/{id?}");
             });
+
         }
     }
 }
